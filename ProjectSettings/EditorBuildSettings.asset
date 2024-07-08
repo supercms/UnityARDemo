@@ -17,9 +17,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FaceSwitch.unity
     guid: ed056b54e4756ae45993b4d769137e0f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ImageTracking.unity
     guid: 238f9a9ea9e7e3e4fb050d4715fd5c7f
+  - enabled: 1
+    path: Assets/Scenes/ObjectsControl.unity
+    guid: 6f3fa269154b1fa43a89134015cc9d4a
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
