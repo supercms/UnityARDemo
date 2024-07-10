@@ -10,6 +10,9 @@ public class ARObjectController : MonoBehaviour
     private ARRaycastManager raycastManager;
 
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    private List<GameObject> spawnedObjects = new List<GameObject>();
+    // private Dictionary<string, GameObject> spawnedObjectsDict = new Dictionary<string,GameObject>();
+    int currentID = 0;
 
     [SerializeField]
     Text txtStatus;
@@ -36,7 +39,24 @@ public class ARObjectController : MonoBehaviour
         {
             txtStatus.text = "TOUCHED, INSTANTIATE";
             var hitPose = hits[0].pose;
-            Instantiate(raycastManager.raycastPrefab, hitPose.position, hitPose.rotation);
+
+            // if (spawnedObjects.Count > 0)
+            // {
+            //     GameObject go = spawnedObjects[currentID];
+            //     go.transform.position = hitPose.position;
+            //     go.transform.rotation = hitPose.rotation;
+            // }
+            // else
+            // {
+            GameObject go = Instantiate(furniturePfbList[currentID], hitPose.position, hitPose.rotation);
+            spawnedObjects.Add(go);
+            // }
+
         }
+    }
+
+    public void changeFurnitureID(int id)
+    {
+        currentID = id;
     }
 }
