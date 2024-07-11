@@ -2540,6 +2540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46ba0e99b6407047bb1f64767d76774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arCamera: {fileID: 1144347061}
   txtStatus: {fileID: 142738746}
   furniturePfbList:
   - {fileID: 4566870446150428772, guid: 3ea4bddc703f6bd4fa6e55a712c63fd2, type: 3}
