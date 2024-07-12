@@ -1243,7 +1243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1063, y: 0}
+  m_AnchoredPosition: {x: -1062.9999, y: 0}
   m_SizeDelta: {x: 1800, y: 17}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &884296432
@@ -1390,8 +1390,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 283895121}
   m_HandleRect: {fileID: 283895120}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.59055555
+  m_Value: -0.00000016563139
+  m_Size: 0.5905556
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1977,7 +1977,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 20
-  field of view: 60
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2540,7 +2540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46ba0e99b6407047bb1f64767d76774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arCamera: {fileID: 1144347061}
   txtStatus: {fileID: 142738746}
   furniturePfbList:
   - {fileID: 4566870446150428772, guid: 3ea4bddc703f6bd4fa6e55a712c63fd2, type: 3}
@@ -2549,6 +2548,7 @@ MonoBehaviour:
   - {fileID: 3865515506461908626, guid: 2b3913ec9c6fed948b9e2441f12abe70, type: 3}
   - {fileID: 5227909695959226010, guid: a5eb7607d605847408e6cdfdb231fbd6, type: 3}
   - {fileID: 8257170396876018737, guid: 0713ea8c1ead37a4e8f2fa5ee10da6d3, type: 3}
+  arCamera: {fileID: 1144347061}
 --- !u!1 &1397563671
 GameObject:
   m_ObjectHideFlags: 0

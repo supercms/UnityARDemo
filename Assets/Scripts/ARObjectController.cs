@@ -6,21 +6,17 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-
 [RequireComponent(typeof(ARRaycastManager))]
-[RequireComponent(typeof(Camera))]
 public class ARObjectController : MonoBehaviour
 {
     private ARRaycastManager raycastManager;
-
-    [SerializeField]
-    private Camera arCamera;
 
     private List<ARRaycastHit> arHits = new List<ARRaycastHit>();
     private RaycastHit physicsHit;
     private List<GameObject> spawnedObjects = new List<GameObject>();
     // private Dictionary<string, GameObject> spawnedObjectsDict = new Dictionary<string,GameObject>();
     int currentID = 0;
+    ARObject selectedObject;
 
     [SerializeField]
     Text txtStatus;
@@ -28,7 +24,8 @@ public class ARObjectController : MonoBehaviour
     [SerializeField]
     private List<GameObject> furniturePfbList = new List<GameObject>();
 
-    ARObject selectedObject;
+    [SerializeField]
+    private Camera arCamera;
 
     // Start is called before the first frame update
     private void Awake()
@@ -68,6 +65,7 @@ public class ARObjectController : MonoBehaviour
 
     bool CheckSelectObject(Vector2 touchPos)
     {
+        txtStatus.text = "CheckSelectObject";
         Ray ray = arCamera.ScreenPointToRay(touchPos);
         if (Physics.Raycast(ray, out physicsHit))
         {
@@ -75,6 +73,7 @@ public class ARObjectController : MonoBehaviour
             if (selectedObject)
             {
                 selectedObject.Selected = true;
+                txtStatus.text = "CheckSelectObject >> TRUE";
                 return true;
             }
         }
@@ -84,21 +83,23 @@ public class ARObjectController : MonoBehaviour
 
     void CheckSelectPlane(Vector2 touchPos)
     {
+        txtStatus.text = "CheckSelectPlane >>" + touchPos;
         if (raycastManager.Raycast(touchPos, arHits, TrackableType.PlaneWithinPolygon))
         {
-            txtStatus.text = "TOUCHED, INSTANTIATE";
             var hitPose = arHits[0].pose;
 
-            if (selectedObject.Selected)
+            if (selectedObject && selectedObject.Selected)
             {
                 selectedObject.transform.position = hitPose.position;
                 selectedObject.transform.rotation = hitPose.rotation;
+                txtStatus.text = "CheckSelectPlane >> MOVE";
             }
             else
             {
                 GameObject go = Instantiate(furniturePfbList[currentID], hitPose.position, hitPose.rotation);
                 go.AddComponent<ARObject>();
                 spawnedObjects.Add(go);
+                txtStatus.text = "CheckSelectPlane >> ADD";
             }
         }
     }
