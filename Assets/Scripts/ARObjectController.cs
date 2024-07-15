@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,7 +30,7 @@ public class ARObjectController : MonoBehaviour
     private void Awake()
     {
         raycastManager = GetComponent<ARRaycastManager>();
-        txtStatus.text = "Awake";
+        //txtStatus.text = "Awake";
     }
 
     // Update is called once per frame
@@ -40,7 +39,7 @@ public class ARObjectController : MonoBehaviour
         if (Input.touchCount == 0)
             return;
 
-        txtStatus.text = "TOUCHED";
+        //txtStatus.text = "TOUCHED";
 
         Touch touch = Input.GetTouch(0);
         Vector2 touchPosition = touch.position;
@@ -50,7 +49,7 @@ public class ARObjectController : MonoBehaviour
 
         if (touch.phase == TouchPhase.Began)
         {
-            CheckSelectObject(touchPosition);
+            CheckHitObject(touchPosition);
         }
         else if (touch.phase == TouchPhase.Ended)
         {
@@ -60,12 +59,12 @@ public class ARObjectController : MonoBehaviour
             }
         }
 
-        CheckSelectPlane(touchPosition);
+        CheckHitPlane(touchPosition);
     }
 
-    bool CheckSelectObject(Vector2 touchPos)
+    bool CheckHitObject(Vector2 touchPos)
     {
-        txtStatus.text = "CheckSelectObject";
+        //txtStatus.text = "CheckHitObject";
         Ray ray = arCamera.ScreenPointToRay(touchPos);
         if (Physics.Raycast(ray, out physicsHit))
         {
@@ -73,7 +72,7 @@ public class ARObjectController : MonoBehaviour
             if (selectedObject)
             {
                 selectedObject.Selected = true;
-                txtStatus.text = "CheckSelectObject >> TRUE";
+                //txtStatus.text = "CheckHitObject >> TRUE";
                 return true;
             }
         }
@@ -81,9 +80,9 @@ public class ARObjectController : MonoBehaviour
         return false;
     }
 
-    void CheckSelectPlane(Vector2 touchPos)
+    void CheckHitPlane(Vector2 touchPos)
     {
-        txtStatus.text = "CheckSelectPlane >>" + touchPos;
+        //txtStatus.text = "CheckHitPlane >>" + touchPos;
         if (raycastManager.Raycast(touchPos, arHits, TrackableType.PlaneWithinPolygon))
         {
             var hitPose = arHits[0].pose;
@@ -92,14 +91,14 @@ public class ARObjectController : MonoBehaviour
             {
                 selectedObject.transform.position = hitPose.position;
                 selectedObject.transform.rotation = hitPose.rotation;
-                txtStatus.text = "CheckSelectPlane >> MOVE";
+                //txtStatus.text = "CheckHitPlane >> MOVE";
             }
             else
             {
                 GameObject go = Instantiate(furniturePfbList[currentID], hitPose.position, hitPose.rotation);
                 go.AddComponent<ARObject>();
                 spawnedObjects.Add(go);
-                txtStatus.text = "CheckSelectPlane >> ADD";
+                //txtStatus.text = "CheckSelectPlane >> ADD";
             }
         }
     }
