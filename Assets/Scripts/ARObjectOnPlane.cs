@@ -8,6 +8,11 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(ARRaycastManager))]
+
+/*
+ * @class
+ * @classdesc 현재 사용안함
+ */
 public class ARObjectOnPlane : MonoBehaviour
 {
     private ARRaycastManager raycastManager;

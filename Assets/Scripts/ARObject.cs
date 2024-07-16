@@ -1,28 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @class
+ * @classdesc GameObject가 터치되었을 때 반응에 대한 클래스
+ */
 public class ARObject : MonoBehaviour
 {
+    /*
+     * 객체 색을 변경하기 위함
+     */
     private MeshRenderer meshRenderer;
 
-    private bool IsSelected;
+    /*
+     * 객체 터치에 의한 선택 여부 확인하기 위함
+     */
+    private bool bSelected;
+
+    /*
+     * 객체 원래 색을 저장
+     */
     private Color originColor;
 
+    /*
+     * bSelected의 get, set
+     */
     public bool Selected
     {
-        get { return IsSelected; }
+        get { return bSelected; }
         set
         {
-            IsSelected = value;
+            bSelected = value;
+            // 선택되면 매트리얼 색을 변경
             UpdateMaterialColor();
         }
     }
 
-    // Start is called before the first frame update
+    /*
+     * Unity 전용 함수 : 가장 먼저 실행
+     */
     void Awake()
     {
-        IsSelected = false;
+        bSelected = false;
 
         meshRenderer = GetComponent<MeshRenderer>();
         if (!meshRenderer)
@@ -32,9 +50,14 @@ public class ARObject : MonoBehaviour
         originColor = meshRenderer.material.color;
     }
 
+    /*
+     * 매트리얼 색 변경
+     * 선택시 : 약간 어두운 색
+     * 해재시 : 원래 색으로 복구
+     */
     void UpdateMaterialColor()
     {
-        if (IsSelected)
+        if (bSelected)
         {
             meshRenderer.material.color = Color.gray;
         }
